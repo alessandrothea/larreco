@@ -43,8 +43,8 @@
 // LArSoft Includes
 #include "larcore/Geometry/WireReadout.h"
 #include "larcoreobj/SimpleTypesAndConstants/RawTypes.h" // raw::ChannelID_t
-#include "lardata/ArtDataHelper/HitCreator.h"
 #include "lardata/ArtDataHelper/GetManyByRegexTag.h"
+#include "lardata/ArtDataHelper/HitCreator.h"
 #include "lardataobj/RecoBase/Hit.h"
 #include "lardataobj/RecoBase/Wire.h"
 #include "larreco/HitFinder/HitFilterAlg.h"
@@ -250,11 +250,11 @@ namespace hit {
     // ##########################################
     std::vector<art::Ptr<recob::Wire>> wirePtrVec;
 
-    auto wireVecHandle_many = lar::util::getManyByRegexTag<std::vector<recob::Wire>>(evt, art::InputTag(fCalDataModuleLabel));
-    for ( const auto& wireVecHandle_one : wireVecHandle_many ) {
+    auto wireVecHandle_many = lar::util::getManyByRegexTag<std::vector<recob::Wire>>(
+      evt, art::InputTag(fCalDataModuleLabel));
+    for (const auto& wireVecHandle_one : wireVecHandle_many) {
       art::fill_ptr_vector(wirePtrVec, wireVecHandle_one);
     }
-
 
     //#################################################
     //###    Set the charge determination method    ###
